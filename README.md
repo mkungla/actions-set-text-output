@@ -12,7 +12,7 @@ test-usage:
     content: ${{ steps.content.outputs.value }}
   steps:
     - name: "test simple"
-      uses: howijd/actions-set-text-output@main
+      uses: howijd/actions-set-text-output@v1
       id: content
       with:
         text: |
