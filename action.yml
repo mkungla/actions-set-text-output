@@ -5,9 +5,6 @@ inputs:
   text:
     description: 'Text content to be set as job output'
     required: true
-  name:
-    description: 'output variable name'
-    default: value
 
 outputs:
   value:

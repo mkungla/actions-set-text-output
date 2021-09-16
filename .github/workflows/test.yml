@@ -28,14 +28,19 @@ jobs:
           text="${text//'%'/'%25'}"
           text="${text//$'\n'/'%0A'}"
           text="${text//$'\r'/'%0D'}"
-          echo "::set-output name=text::$markdown"
-      - uses: ./
+          echo "::set-output name=content::$text"
+
+      - name: "test simple"
+        uses: ./
         id: test1
         with:
           text: $content
       - name: "test simple failed"
-        if: ${{ steps.expected.outputs.text != steps.test1.outputs.value }}
+        if: ${{ steps.expected.outputs.content != steps.test1.outputs.value }}
         run: |
-          echo "expected: \n${{ steps.expected.outputs.content }}\n"
-          echo "got: \n${{ steps.test1.outputs.value }}\n"
+          echo "expected:"
+          echo "${{ steps.expected.outputs.content }}"
+          echo "got:"
+          echo "${{ steps.test1.outputs.value }}"
           exit 1
+
