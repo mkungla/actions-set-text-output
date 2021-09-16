@@ -41,6 +41,5 @@ jobs:
           echo "expected:"
           echo "${{ steps.expected.outputs.content }}"
           echo "got:"
-          echo "${{ steps.test1.outputs.value }}"
+          echo "${{ toJSON(steps.test1.outputs) }}"
           exit 1
-
