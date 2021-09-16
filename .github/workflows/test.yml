@@ -28,28 +28,46 @@ jobs:
           text="${text//'%'/'%25'}"
           text="${text//$'\n'/'%0A'}"
           text="${text//$'\r'/'%0D'}"
-          echo "::set-output name=content::$text"
+          echo "::set-output name=value::$text"
 
       - name: "test simple"
         uses: ./
-        id: test1
+        id: test
         with:
           text: $content
       - name: "test simple failed"
-        if: ${{ steps.expected.outputs.content != steps.test1.outputs.value }}
+        if: ${{ steps.expected.outputs.value != steps.test.outputs.value }}
         run: |
           echo "expected:"
-          echo "${{ steps.expected.outputs.content }}"
+          echo "${{ steps.expected.outputs.value }}"
           echo "got:"
           echo "${{ toJSON(steps.test1.outputs) }}"
           exit 1
   
+  test-md-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: "test changelog"
+        uses: ./
+        id: get-changekog
+        with:
+          text: $(cat tests/test-changelog.md)
+      - run: echo "${{ steps.get-changekog.outputs.value }}"
+
+      - id: plain
+        run: echo "::set-output name=value::$(cat tests/test-changelog.md)"
+      - if: ${{ steps.get-changekog.outputs.value == steps.plain.outputs.value }}
+        run: exit 1
+
   #############################################################################
   # TEST dep node
   #############################################################################
   test-pass:
     runs-on: ubuntu-latest
-    needs: test-string
+    needs: 
+      - test-string
+      - test-md-file
     steps:
       - run: echo "ok"
 
