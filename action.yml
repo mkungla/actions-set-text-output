@@ -18,6 +18,7 @@ runs:
   using: composite
   steps:
     - id: set
+      shell: bash
       env:
         markdown: ${{ inputs.markdown }}
       run: |
