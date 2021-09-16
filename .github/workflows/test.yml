@@ -25,16 +25,16 @@ jobs:
         env:
           text: $content
         run: |
-          markdown="${markdown//'%'/'%25'}"
-          markdown="${markdown//$'\n'/'%0A'}"
-          markdown="${markdown//$'\r'/'%0D'}"
-          echo "::set-output name=content::$markdown"
+          text="${text//'%'/'%25'}"
+          text="${text//$'\n'/'%0A'}"
+          text="${text//$'\r'/'%0D'}"
+          echo "::set-output name=text::$markdown"
       - uses: ./
         id: test1
         with:
           text: $content
       - name: "test simple failed"
-        if: ${{ steps.expected.outputs.content != steps.test1.outputs.value }}
+        if: ${{ steps.expected.outputs.text != steps.test1.outputs.value }}
         run: |
           echo "expected: \n${{ steps.expected.outputs.content }}\n"
           echo "got: \n${{ steps.test1.outputs.value }}\n"
