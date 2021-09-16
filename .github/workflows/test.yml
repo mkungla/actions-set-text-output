@@ -10,13 +10,15 @@ jobs:
       content: |
         # test basic
 
+        test content
+
     steps:
       - uses: actions/checkout@v2
       - uses: ./
         id: test1
         with:
           markdown: $content
-      - run: |
+      - if: ${{ env.content }} != ${{ steps.test1.outputs.value }}
+        run: |
           echo "${{ env.content }}\n"
           echo "${{ steps.test1.outputs.value }}\n"
-
