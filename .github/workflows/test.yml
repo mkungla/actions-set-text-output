@@ -60,7 +60,7 @@ jobs:
 
   latest-result:
     runs-on: ubuntu-latest
-    needs: test-usage
+    needs: latest-test
     if: always()
     steps:
       - if: startsWith(needs.test-usage.outputs.content, '# Set text output')
