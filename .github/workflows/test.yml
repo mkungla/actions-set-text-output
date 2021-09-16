@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v2
       - id: expected
         env:
-          markdown: $content
+          text: $content
         run: |
           markdown="${markdown//'%'/'%25'}"
           markdown="${markdown//$'\n'/'%0A'}"
@@ -32,10 +32,10 @@ jobs:
       - uses: ./
         id: test1
         with:
-          markdown: $content
+          text: $content
       - name: "test simple failed"
-        if: ${{ steps.expected.outputs.content != steps.test1.outputs.value }}
+        if: ${{ steps.expected.outputs.content == steps.test1.outputs.value }}
         run: |
-          echo "${{ env.content }}\n"
-          echo "${{ steps.test1.outputs.value }}\n"
+          echo "expected: \n${{ steps.expected.outputs.content }}\n"
+          echo "got: \n${{ steps.test1.outputs.value }}\n"
           exit 1
