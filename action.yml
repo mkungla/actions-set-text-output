@@ -1,5 +1,5 @@
-name: 'Set text output'
-description: 'A simple composite actions to set the job output while maintaining the text format e.g. markdown format.'
+name: Set text output
+description: A simple composite actions to set the job output while maintaining the text format e.g. markdown format.
 
 branding:
   icon: align-left
@@ -7,12 +7,12 @@ branding:
 
 inputs:
   text:
-    description: 'Text content to be set as job output'
+    description: Text content to be set as job output
     required: true
 
 outputs:
   value:
-    description: 'outputs text and maintains the text format.'
+    description: outputs text and maintains the text format.
     value: ${{ steps.set.outputs.value }}
 
 runs:
