@@ -1,6 +1,6 @@
 name: Set text output
 description: A simple composite actions to set the job output while maintaining the text format e.g. markdown format.
-
+author: 'Howijd.Network'
 branding:
   icon: align-left
   color: orange
