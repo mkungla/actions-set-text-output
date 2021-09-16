@@ -26,7 +26,7 @@ jobs:
         with:
           markdown: $content
       - name: "test simple"
-        if: '${{ env.content != steps.test1.outputs.value }}'
+        if: ${{ env.content == steps.test1.outputs.value }}
         run: |
           echo "${{ env.content }}\n"
           echo "${{ steps.test1.outputs.value }}\n"
