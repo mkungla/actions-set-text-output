@@ -1,0 +1,22 @@
+name: test
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      content: |
+        # test basic
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        id: test1
+        with:
+          markdown: $content
+      - run: |
+          echo "${{ env.content }}\n"
+          echo "${{ steps.test1.outputs.value }}\n"
+

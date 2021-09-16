@@ -1,0 +1,27 @@
+name: 'Set markdown output'
+description: 'A simple composite actions to set the job output while maintaining the markdown format.'
+
+inputs:
+  markdown:
+    description: 'Markdown content to be set as job output'
+    required: true
+  name:
+    description: 'oitput variable name'
+    default: value
+
+outputs:
+  '${{ inputs.name }}':
+    description: 'outputs markdown and maintains the markdown format.'
+    value: ${{ steps.set.outputs.value }}
+
+runs:
+  using: composite
+  steps:
+    - id: set
+      env:
+        markdown: ${{ inputs.markdown }}
+      run: |
+        markdown="${markdown//'%'/'%25'}"
+        markdown="${markdown//$'\n'/'%0A'}"
+        markdown="${markdown//$'\r'/'%0D'}"
+        echo "::set-output name=value::$markdown"
