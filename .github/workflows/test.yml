@@ -21,12 +21,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - id: expected
+        env:
+          markdown: $content
+        run: |
+          markdown="${markdown//'%'/'%25'}"
+          markdown="${markdown//$'\n'/'%0A'}"
+          markdown="${markdown//$'\r'/'%0D'}"
+          echo "::set-output name=content::$markdown"
       - uses: ./
         id: test1
         with:
           markdown: $content
-      - name: "test simple"
-        if: ${{ env.content == steps.test1.outputs.value }}
+      - name: "test simple failed"
+        if: ${{ steps.expected.outputs.content != steps.test1.outputs.value }}
         run: |
           echo "${{ env.content }}\n"
           echo "${{ steps.test1.outputs.value }}\n"
