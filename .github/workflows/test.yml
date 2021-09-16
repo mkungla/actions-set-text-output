@@ -34,7 +34,7 @@ jobs:
         with:
           text: $content
       - name: "test simple failed"
-        if: ${{ steps.expected.outputs.content == steps.test1.outputs.value }}
+        if: ${{ steps.expected.outputs.content != steps.test1.outputs.value }}
         run: |
           echo "expected: \n${{ steps.expected.outputs.content }}\n"
           echo "got: \n${{ steps.test1.outputs.value }}\n"
