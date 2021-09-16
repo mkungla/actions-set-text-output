@@ -30,7 +30,7 @@ jobs:
           text="${text//$'\r'/'%0D'}"
           echo "::set-output name=value::$text"
 
-      - name: "test simple"
+      - name: test simple
         uses: ./
         id: test
         with:
@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: "test changelog"
+      - name: test changelog
         uses: ./
         id: get-changekog
         with:
@@ -105,8 +105,7 @@ jobs:
     outputs:
       content: ${{ steps.content.outputs.value }}
     steps:
-      - name: "test simple"
-        uses: mkungla/actions-set-text-output@main
+      - uses: mkungla/actions-set-text-output@main
         id: content
         with:
           text: |
@@ -133,8 +132,7 @@ jobs:
     outputs:
       content: ${{ steps.content.outputs.value }}
     steps:
-      - name: "test simple"
-        uses: mkungla/actions-set-text-output@v1
+      - uses: mkungla/actions-set-text-output@v1
         id: content
         with:
           text: |
