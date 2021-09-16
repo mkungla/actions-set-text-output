@@ -6,6 +6,20 @@ A simple composite actions to set the job output while maintaining the text form
 
 # Usage
 
+**NOTE:** `howijd/actions-set-text-output@v1` is branch which always has latest `v1.x.x` version
+
+```yml
+- uses: howijd/actions-set-text-output@v1
+  id: content
+  with:
+    text: |
+      # Set text output
+
+      A simple composite actions to set the job output while maintaining the text format e.g. markdown format.
+```
+
+# Example
+
 ```yml
   usage:
     runs-on: ubuntu-latest
