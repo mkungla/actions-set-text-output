@@ -49,7 +49,7 @@ jobs:
     outputs:
       content: ${{ steps.content.outputs.value }}
     steps:
-      - uses: howijd/actions-set-text-output@v1
+      - uses: mkungla/actions-set-text-output@v1
         id: content
         with:
           text: |
@@ -71,7 +71,7 @@ jobs:
       content: ${{ steps.content.outputs.value }}
     steps:
       - name: "test simple"
-        uses: howijd/actions-set-text-output@main
+        uses: mkungla/actions-set-text-output@main
         id: content
         with:
           text: |
@@ -96,7 +96,7 @@ jobs:
       content: ${{ steps.content.outputs.value }}
     steps:
       - name: "test simple"
-        uses: howijd/actions-set-text-output@v1
+        uses: mkungla/actions-set-text-output@v1
         id: content
         with:
           text: |
