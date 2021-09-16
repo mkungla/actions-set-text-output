@@ -44,7 +44,7 @@ jobs:
           echo "${{ toJSON(steps.test1.outputs) }}"
           exit 1
 
-  test-usage:
+  latest-test:
     runs-on: ubuntu-latest
     outputs:
       content: ${{ steps.content.outputs.value }}
@@ -58,7 +58,7 @@ jobs:
 
             A simple composite actions to set the job output while maintaining the text format e.g. markdown format.
 
-  test-result:
+  latest-result:
     runs-on: ubuntu-latest
     needs: test-usage
     if: always()
@@ -84,10 +84,10 @@ jobs:
 
   v1-result:
     runs-on: ubuntu-latest
-    needs: test-usage
+    needs: v1-test
     if: always()
     steps:
-      - if: startsWith(needs.test-usage.outputs.content, '# Set text output')
+      - if: startsWith(needs.v1-test.outputs.content, '# Set text output')
         run: exit 0
-      - if: ${{ !startsWith(needs.test-usage.outputs.content, '# Set text output') }}
+      - if: ${{ !startsWith(needs.v1-test.outputs.content, '# Set text output') }}
         run: exit 1
