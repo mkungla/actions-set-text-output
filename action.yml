@@ -10,7 +10,7 @@ inputs:
     default: value
 
 outputs:
-  '${{ inputs.name }}':
+  value:
     description: 'outputs markdown and maintains the markdown format.'
     value: ${{ steps.set.outputs.value }}
 
@@ -25,4 +25,4 @@ runs:
         markdown="${markdown//'%'/'%25'}"
         markdown="${markdown//$'\n'/'%0A'}"
         markdown="${markdown//$'\r'/'%0D'}"
-        echo "::set-output name=value::$markdown"
+        echo "::set-output name=${{ inputs.name }}::$markdown"
