@@ -1,5 +1,6 @@
 name: Set text output
-description: A simple composite actions to set the job output while maintaining the text format e.g. markdown format.
+description: A simple composite actions to set the job output while maintaining the text format e.g. markdown format and multi-line strings.
+author: 'Marko Kungla <marko.kungla@gmail.com>'
 branding:
   icon: align-left
   color: orange
