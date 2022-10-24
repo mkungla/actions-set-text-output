@@ -26,4 +26,4 @@ runs:
         text="${text//'%'/'%25'}"
         text="${text//$'\n'/'%0A'}"
         text="${text//$'\r'/'%0D'}"
-        echo "::set-output name=value::$text"
+        echo "value=$text" >> $GITHUB_OUTPUT
